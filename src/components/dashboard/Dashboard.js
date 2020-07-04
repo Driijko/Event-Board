@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
+
 
 import Notifications from "./Notifications";
 import ProjectList from "../projects/ProjectList";
 
 export default function Dashboard(props) {
+
   return (
     <div className="dashboard container">
       <div className="row">
