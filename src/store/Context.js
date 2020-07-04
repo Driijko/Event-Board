@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 
 // CREATE CONTEXT /////////////////////////////////////////////////////////////////////
 const Context = createContext();
@@ -11,9 +11,22 @@ function ContextProvider(props) {
     {id: 3, title: "egg hunt with yoshi", content: "blah blah blah"}
   ]);
 
+  useEffect(()=> {
+    console.log(projects);
+  }, [projects])
+
+  function addProject(project) {
+    setProjects(prev=> {
+      return [
+        project,
+        ...prev
+      ]
+    })
+  }
+
   return (
     <Context.Provider
-      value={{projects}}
+      value={{projects, addProject}}
     >
       { props.children }
     </Context.Provider>

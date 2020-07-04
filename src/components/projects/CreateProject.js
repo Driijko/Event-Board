@@ -1,13 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+
+import Context from "../../store/Context";
 
 export default function CreateProject(props) {
+
+  const {addProject} = useContext(Context);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(title, content);
+    addProject({id: Math.round(Math.random() * 100), title: title, content: content});
   }
 
   function handleChange(e) {
