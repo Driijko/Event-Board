@@ -26,9 +26,9 @@ function ContextProvider(props) {
     })
   }, [])
 
-  useEffect(()=> {
-    console.log(projects);
-  }, [projects])
+  // useEffect(()=> {
+  //   console.log(projects);
+  // }, [projects])
 
   function addProject(project) {
     firebase.firestore().collection("projects").add(project).catch(err=> {
