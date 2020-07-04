@@ -1,4 +1,5 @@
 import React, {useContext} from "react";
+import {Link} from "react-router-dom";
 
 import Context from "../../store/Context";
 
@@ -9,7 +10,11 @@ export default function ProjectList(props) {
   const {projects} = useContext(Context); 
 
   const projectSummaryComponents = projects.map(project=> {
-    return <ProjectSummary key={project.id} title={project.title} content={project.content} />
+    return (
+      <Link to={"/project/" + project.id} key={project.id}>
+        <ProjectSummary title={project.title} content={project.content} />
+      </Link>
+    )
   })
 
   return (

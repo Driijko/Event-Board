@@ -31,7 +31,9 @@ function ContextProvider(props) {
   }, [projects])
 
   function addProject(project) {
-    firebase.firestore().collection("projects").add(project);
+    firebase.firestore().collection("projects").add(project).catch(err=> {
+      console.log("something went wrong");
+    })
   }
 
   return (

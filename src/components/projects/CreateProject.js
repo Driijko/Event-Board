@@ -9,16 +9,21 @@ export default function CreateProject(props) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+
   function handleSubmit(e) {
     e.preventDefault();
-    addProject({
-      title: title, 
-      content: content, 
-      authorFirstName: "Dree", 
-      authorLastName: "Ko",
-      authorId: 12345,
-      createdAt: new Date()
-  });
+    // addProject({
+    //   title: title, 
+    //   content: content, 
+    //   authorFirstName: "Dree", 
+    //   authorLastName: "Ko",
+    //   authorId: 12345,
+    //   createdAt: new Date()
+    // });
+    // setTitle("");
+    // setContent("");
+    e.target[0].value = "";
+    e.target[1].value = "";
   }
 
   function handleChange(e) {
