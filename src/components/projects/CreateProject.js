@@ -11,7 +11,14 @@ export default function CreateProject(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addProject({id: Math.round(Math.random() * 100), title: title, content: content});
+    addProject({
+      title: title, 
+      content: content, 
+      authorFirstName: "Dree", 
+      authorLastName: "Ko",
+      authorId: 12345,
+      createdAt: new Date()
+  });
   }
 
   function handleChange(e) {

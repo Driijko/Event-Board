@@ -31,12 +31,7 @@ function ContextProvider(props) {
   }, [projects])
 
   function addProject(project) {
-    setProjects(prev=> {
-      return [
-        project,
-        ...prev
-      ]
-    })
+    firebase.firestore().collection("projects").add(project);
   }
 
   return (
