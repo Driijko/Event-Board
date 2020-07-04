@@ -1,13 +1,26 @@
-import React, {useState} from "react";
+// IMPORTS /////////////////////////////////////////////////////////////////////////////////////////
+import React, {useState, useContext} from "react";
+
+import Context from "../../store/Context";
+
+
+
 
 export default function SignIn(props) {
 
+  // STATE ///////////////////////////////////////////////////////////////////////////////////
+  // GENERAL //////////////////////////////////////
+  // Actions
+  const {signIn, signInStatus} = useContext(Context);
+
+  // LOCAL ///////////////////////////////////////  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // EVENTS ///////////////////////////////////////////////////////////////////////////////////
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(email, password);
+    signIn({email, password});
   }
 
   function handleChange(e) {
@@ -19,7 +32,7 @@ export default function SignIn(props) {
     }
   }
 
-
+  // RENDER ///////////////////////////////////////////////////////////////////////////////////
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="white">
@@ -34,6 +47,7 @@ export default function SignIn(props) {
         </div>
         <div className="input-field">
           <button className="btn pink lighten-1 z-depth-0">Login</button>
+          {signInStatus? <div className="red-text center">{signInStatus}</div>: null}
         </div>
       </form>
     </div>

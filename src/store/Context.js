@@ -6,11 +6,13 @@ const Context = createContext();
 
 function ContextProvider(props) {
 
+  // PROJECTS ////////////////////////////////////////////////////////////////////////////////////////
+
+  // STATE //////////////////////////////////////
   const [projects, setProjects] = useState([
     {id: 1, title: "LOADING DATA...", content: "blah blah blah"}
   ]);
 
-  // LOAD DATA FROM FIRESTORE ////////////////////////////////////////////////////////
   useEffect(()=> {
     firebase.firestore().collection("projects").onSnapshot(snapshot => {
       const newProjects = snapshot.docs.map((doc)=> {
@@ -30,15 +32,34 @@ function ContextProvider(props) {
   //   console.log(projects);
   // }, [projects])
 
+  // ACTIONS ////////////////////////////////////
   function addProject(project) {
     firebase.firestore().collection("projects").add(project).catch(err=> {
       console.log("something went wrong");
     })
   }
 
+  // AUTHENTICATION //////////////////////////////////////////////////////////////////////////////////
+  // STATE //////////////////////////////////////////////////////////////////////////////////////////
+  const [signInStatus, setSignInStatus] = useState(null);
+
+  // ACTIONS //////////////////////////////////
+  function signIn(credentials) {
+    firebase.auth().signInWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    )
+    .then(setSignInStatus(null))
+    .catch(err=> {
+      setSignInStatus("SIGN IN FAILED");
+    })
+
+  }
+
+  // PROVIDE CONTEXT /////////////////////////////////////////////////////////////////////////////////
   return (
     <Context.Provider
-      value={{projects, addProject}}
+      value={{projects, addProject, signIn, signInStatus}}
     >
       { props.children }
     </Context.Provider>
