@@ -1,4 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react';
+import firebase from "../firebase";
 
 // CREATE CONTEXT /////////////////////////////////////////////////////////////////////
 const Context = createContext();
@@ -6,10 +7,24 @@ const Context = createContext();
 function ContextProvider(props) {
 
   const [projects, setProjects] = useState([
-    {id: 1, title: "help me find Peach", content: "blah blah blah"},
-    {id: 2, title: "collect all the stars", content: "blah blah blah"},
-    {id: 3, title: "egg hunt with yoshi", content: "blah blah blah"}
+    {id: 1, title: "LOADING DATA...", content: "blah blah blah"}
   ]);
+
+  // LOAD DATA FROM FIRESTORE ////////////////////////////////////////////////////////
+  useEffect(()=> {
+    firebase.firestore().collection("projects").onSnapshot(snapshot => {
+      const newProjects = snapshot.docs.map((doc)=> {
+        return (
+          {
+            id: doc.id,
+            ...doc.data()
+          }
+        )
+      }
+    )
+    setProjects(newProjects);
+    })
+  }, [])
 
   useEffect(()=> {
     console.log(projects);

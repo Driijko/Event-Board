@@ -4,12 +4,10 @@ export default function SignIn(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(email, password);
   }
 
   function handleChange(e) {
