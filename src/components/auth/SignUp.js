@@ -1,12 +1,22 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {Redirect} from "react-router-dom";
+
+import Context from "../../store/Context";
 
 export default function SignUp(props) {
 
+  // STATE /////////////////////////////////////////////////////////////////////////////
+  // GENERAL ///////////////////////////////////////
+  // State
+  const {signedIn} = useContext(Context);
+
+  // LOCAL ////////////////////////////////////////
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  // EVENTS /////////////////////////////////////////////////////////////////////////////
   function handleSubmit(e) {
     e.preventDefault();
     console.log(email, password, firstName, lastName);
@@ -25,6 +35,12 @@ export default function SignUp(props) {
     else if (e.target.id === "lastName") {
       setLastName(e.target.value);
     }
+  }
+
+  // RENDER ////////////////////////////////////////////////////////////////////////
+
+  if (signedIn) {
+    return <Redirect to="/signIn" />
   }
 
   return (
