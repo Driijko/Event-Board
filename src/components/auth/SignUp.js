@@ -7,8 +7,9 @@ export default function SignUp(props) {
 
   // STATE /////////////////////////////////////////////////////////////////////////////
   // GENERAL ///////////////////////////////////////
-  // State
-  const {signedIn} = useContext(Context);
+  // State: signedIn
+  // Action: signUp
+  const {signedIn, signUp} = useContext(Context);
 
   // LOCAL ////////////////////////////////////////
   const [email, setEmail] = useState("");
@@ -19,7 +20,13 @@ export default function SignUp(props) {
   // EVENTS /////////////////////////////////////////////////////////////////////////////
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(email, password, firstName, lastName);
+    const newUser = {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    }
+    signUp(newUser);
   }
 
   function handleChange(e) {

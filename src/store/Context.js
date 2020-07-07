@@ -44,9 +44,20 @@ function ContextProvider(props) {
   // const [signInStatus, setSignInStatus] = useState("signed out");
   const [signedIn, setSignedIn] = useState(false);
   const [signInError, setSignInError] = useState(false);
+  const [signUpError, setSignUpError] = useState(false);
 
 
   // ACTIONS //////////////////////////////////
+  async function signUp(newUser) {
+    const res = await firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
+    firebase.firestore().collection("users").doc(res.user.uid).set({
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      initials: newUser.firstName[0] + newUser.lastName[0]     
+    });
+    setSignedIn(true);
+  }
+
   function signIn(credentials) {
     firebase.auth().signInWithEmailAndPassword(
       credentials.email,
@@ -65,15 +76,15 @@ function ContextProvider(props) {
   }
 
   // TRACK ////////////////////////////////////
-  useEffect(()=> {
-    console.log(signedIn);
-    console.log(firebase.auth());
-  }, [signedIn])
+  // useEffect(()=> {
+  //   console.log(signedIn);
+  //   console.log(firebase.auth());
+  // }, [signedIn])
 
   // PROVIDE CONTEXT /////////////////////////////////////////////////////////////////////////////////
   return (
     <Context.Provider
-      value={{projects, addProject, signIn, signedIn, signOut, signInError}}
+      value={{projects, addProject, signIn, signedIn, signOut, signInError, signUp, signUpError}}
     >
       { props.children }
     </Context.Provider>
