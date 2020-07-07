@@ -1,10 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
+import {Redirect} from "react-router-dom";
+
+import Context from "../../store/Context";
 
 
 import Notifications from "./Notifications";
 import ProjectList from "../projects/ProjectList";
 
 export default function Dashboard(props) {
+
+  const {signedIn} = useContext(Context);
+
+  if (!signedIn) {
+    return <Redirect to="/signIn" />
+  }
 
   return (
     <div className="dashboard container">

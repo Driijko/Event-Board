@@ -67,6 +67,7 @@ function ContextProvider(props) {
   // TRACK ////////////////////////////////////
   useEffect(()=> {
     console.log(signedIn);
+    console.log(firebase.auth());
   }, [signedIn])
 
   // PROVIDE CONTEXT /////////////////////////////////////////////////////////////////////////////////

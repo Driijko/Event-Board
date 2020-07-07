@@ -19,14 +19,13 @@ export default function NavBar(props) {
   const {signedIn} = useContext(Context);
 
   // RENDER ///////////////////////////////////////////////////////////////////
+  const links = signedIn ? <SignedInLinks /> : <SignedOutLinks /> ;
+
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
         <Link to="/" className="brand-logo left">MarioPlan</Link>
-        {signedIn ?
-          <SignedInLinks />
-          : <SignedOutLinks />
-        }
+        {links}
       </div>
     </nav>
   )

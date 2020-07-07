@@ -1,5 +1,6 @@
 // IMPORTS /////////////////////////////////////////////////////////////////////////////////////////
 import React, {useState, useContext} from "react";
+import {Redirect} from "react-router-dom";
 
 import Context from "../../store/Context";
 
@@ -12,7 +13,7 @@ export default function SignIn(props) {
   // GENERAL //////////////////////////////////////
   // State: signInError
   // Action: signIn
-  const {signIn, signInError} = useContext(Context);
+  const {signIn, signInError, signedIn} = useContext(Context);
 
   // LOCAL ///////////////////////////////////////  
   const [email, setEmail] = useState("");
@@ -34,6 +35,10 @@ export default function SignIn(props) {
   }
 
   // RENDER ///////////////////////////////////////////////////////////////////////////////////
+  if (signedIn) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="white">
