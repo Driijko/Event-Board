@@ -41,7 +41,7 @@ function ContextProvider(props) {
 
   // AUTHENTICATION //////////////////////////////////////////////////////////////////////////////////
   // STATE //////////////////////////////////////////////////////////////////////////////////////////
-  const [signInStatus, setSignInStatus] = useState(null);
+  const [signInStatus, setSignInStatus] = useState("signed out");
 
   // ACTIONS //////////////////////////////////
   function signIn(credentials) {
@@ -49,9 +49,9 @@ function ContextProvider(props) {
       credentials.email,
       credentials.password
     )
-    .then(setSignInStatus(null))
+    .then(setSignInStatus("signed in"))
     .catch(err=> {
-      setSignInStatus("SIGN IN FAILED");
+      setSignInStatus("failed");
     })
 
   }

@@ -47,7 +47,7 @@ export default function SignIn(props) {
         </div>
         <div className="input-field">
           <button className="btn pink lighten-1 z-depth-0">Login</button>
-          {signInStatus? <div className="red-text center">{signInStatus}</div>: null}
+          {signInStatus === "failed" ? <div className="red-text center">{signInStatus}</div>: null}
         </div>
       </form>
     </div>
