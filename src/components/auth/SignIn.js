@@ -10,8 +10,9 @@ export default function SignIn(props) {
 
   // STATE ///////////////////////////////////////////////////////////////////////////////////
   // GENERAL //////////////////////////////////////
-  // Actions
-  const {signIn, signInStatus} = useContext(Context);
+  // State: signInError
+  // Action: signIn
+  const {signIn, signInError} = useContext(Context);
 
   // LOCAL ///////////////////////////////////////  
   const [email, setEmail] = useState("");
@@ -47,7 +48,7 @@ export default function SignIn(props) {
         </div>
         <div className="input-field">
           <button className="btn pink lighten-1 z-depth-0">Login</button>
-          {signInStatus === "failed" ? <div className="red-text center">{signInStatus}</div>: null}
+          {signInError ? <div className="red-text center">Sign in Failed</div> : null}
         </div>
       </form>
     </div>

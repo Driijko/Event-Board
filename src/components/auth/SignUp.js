@@ -27,7 +27,6 @@ export default function SignUp(props) {
     }
   }
 
-
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="white">

@@ -41,7 +41,10 @@ function ContextProvider(props) {
 
   // AUTHENTICATION //////////////////////////////////////////////////////////////////////////////////
   // STATE //////////////////////////////////////////////////////////////////////////////////////////
-  const [signInStatus, setSignInStatus] = useState("signed out");
+  // const [signInStatus, setSignInStatus] = useState("signed out");
+  const [signedIn, setSignedIn] = useState(false);
+  const [signInError, setSignInError] = useState(false);
+
 
   // ACTIONS //////////////////////////////////
   function signIn(credentials) {
@@ -49,17 +52,27 @@ function ContextProvider(props) {
       credentials.email,
       credentials.password
     )
-    .then(setSignInStatus("signed in"))
+    .then(setSignedIn(true))
     .catch(err=> {
-      setSignInStatus("failed");
+      setSignInError(true);
+      setSignedIn(false);
     })
-
   }
+
+  function signOut() {
+    firebase.auth().signOut()
+    .then(setSignedIn(false));
+  }
+
+  // TRACK ////////////////////////////////////
+  useEffect(()=> {
+    console.log(signedIn);
+  }, [signedIn])
 
   // PROVIDE CONTEXT /////////////////////////////////////////////////////////////////////////////////
   return (
     <Context.Provider
-      value={{projects, addProject, signIn, signInStatus}}
+      value={{projects, addProject, signIn, signedIn, signOut, signInError}}
     >
       { props.children }
     </Context.Provider>

@@ -16,14 +16,14 @@ import SignedOutLinks from "./SignedOutLinks";
 export default function NavBar(props) {
 
   // STATE ////////////////////////////////////////////////////////////////////
-  const {signInStatus} = useContext(Context);
+  const {signedIn} = useContext(Context);
 
   // RENDER ///////////////////////////////////////////////////////////////////
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
         <Link to="/" className="brand-logo left">MarioPlan</Link>
-        {signInStatus === "signed in" ?
+        {signedIn ?
           <SignedInLinks />
           : <SignedOutLinks />
         }
