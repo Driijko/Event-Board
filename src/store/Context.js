@@ -48,6 +48,7 @@ function ContextProvider(props) {
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [initials, setInitials] = useState(null);
+  const [userID, setUserID] = useState(null);
 
 
   // ACTIONS //////////////////////////////////
@@ -56,13 +57,14 @@ function ContextProvider(props) {
     firebase.firestore().collection("users").doc(res.user.uid).set({
       firstName: newUser.firstName,
       lastName: newUser.lastName,
-      initials: newUser.firstName[0] + newUser.lastName[0]     
+      initials: newUser.firstName[0] + newUser.lastName[0],
+      userID: res.user.uid     
     });
     setSignedIn(true);
-    console.log(newUser.firstName);
     setFirstName(newUser.firstName);
     setLastName(newUser.lastName);
     setInitials(newUser.firstName[0] + newUser.lastName[0]);
+    setUserID(res.user.uid);
   }
 
   async function signIn(credentials) {
@@ -79,6 +81,7 @@ function ContextProvider(props) {
       setFirstName(userData.firstName);
       setLastName(userData.lastName);
       setInitials(userData.initials);
+      setUserID(userData.userID);
     }
     catch (error) {
       console.log(error);
@@ -104,7 +107,7 @@ function ContextProvider(props) {
   return (
     <Context.Provider
       value={{projects, addProject, signIn, signedIn, signOut, signUp, signUpError, firstName,
-      lastName, initials}}
+      lastName, initials, userID}}
     >
       { props.children }
     </Context.Provider>

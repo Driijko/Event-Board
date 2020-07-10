@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {Redirect} from "react-router-dom";
+import moment from "moment";
 
 import Context from "../../store/Context";
 
@@ -35,7 +36,7 @@ export default function ProjectDetails(props) {
             </div>
             <div className="card-action grey lighten-4 grey-text">
               <div>Posted by {`${project.authorFirstName} ${project.authorLastName}`}</div>
-              <div>{`${project.createdAt}`}</div>
+              <div>{`${moment(project.createdAt.toDate()).calendar()}`}</div>
             </div>
           </div>
         </div>     

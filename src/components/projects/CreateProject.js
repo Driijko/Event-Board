@@ -1,17 +1,26 @@
+// IMPORTS ////////////////////////////////////////////////////////////////////////////////////
 import React, {useState, useContext} from "react";
 import {Redirect} from "react-router-dom";
 
 import Context from "../../store/Context";
 
+
+
+
 export default function CreateProject(props) {
 
-  const {addProject, firstName, lastName, homeURL} = useContext(Context);
+  // STATE ////////////////////////////////////////////////////////////////////////////////
+  // GENERAL ///////////////////////////////////////
+  // State: firstName, lastName
+  // Action: addProject
+  const {addProject, firstName, lastName, userID} = useContext(Context);
 
+  // LOCAL ////////////////////////////////////////
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-
+  // EVENTS /////////////////////////////////////////////////////////////////////////////////
   function handleSubmit(e) {
     e.preventDefault();
     addProject({
@@ -19,14 +28,10 @@ export default function CreateProject(props) {
       content: content, 
       authorFirstName: firstName, 
       authorLastName: lastName,
-      authorId: 1234,
+      authorId: userID,
       createdAt: new Date()
     });
     setRedirect(true);
-    // setTitle("");
-    // setContent("");
-    // e.target[0].value = "";
-    // e.target[1].value = "";
   }
 
   function handleChange(e) {
