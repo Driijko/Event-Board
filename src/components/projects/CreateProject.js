@@ -4,7 +4,7 @@ import Context from "../../store/Context";
 
 export default function CreateProject(props) {
 
-  const {addProject} = useContext(Context);
+  const {addProject, firstName, lastName} = useContext(Context);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -15,9 +15,9 @@ export default function CreateProject(props) {
     addProject({
       title: title, 
       content: content, 
-      authorFirstName: "Dree", 
-      authorLastName: "Ko",
-      authorId: 12345,
+      authorFirstName: firstName, 
+      authorLastName: lastName,
+      authorId: 1234,
       createdAt: new Date()
     });
     setTitle("");
