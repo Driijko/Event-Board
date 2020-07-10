@@ -65,21 +65,6 @@ function ContextProvider(props) {
     setInitials(newUser.firstName[0] + newUser.lastName[0]);
   }
 
-  // function signIn(credentials) {
-  //   firebase.auth().signInWithEmailAndPassword(
-  //     credentials.email,
-  //     credentials.password
-  //   )
-  //   .then(()=> {
-  //     setSignedIn(true);
-      
-  //   })
-  //   .catch(err=> {
-  //     setSignInError(true);
-  //     setSignedIn(false);
-  //   })
-  // }
-
   async function signIn(credentials) {
 
     let signInError = false;
