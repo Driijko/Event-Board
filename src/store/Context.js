@@ -107,13 +107,13 @@ function ContextProvider(props) {
   }
 
   // TRACK ////////////////////////////////////
-  useEffect(()=> {
-    console.log(signedIn);
-    console.log(firstName);
-    console.log(lastName);
-    console.log(initials);
-    // console.log(firebase.auth());
-  }, [initials])
+  // useEffect(()=> {
+  //   console.log(signedIn);
+  //   console.log(firstName);
+  //   console.log(lastName);
+  //   console.log(initials);
+  //   // console.log(firebase.auth());
+  // }, [initials])
 
   // PROVIDE CONTEXT /////////////////////////////////////////////////////////////////////////////////
   return (

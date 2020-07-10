@@ -12,7 +12,7 @@ export default function ProjectList(props) {
   const projectSummaryComponents = projects.map(project=> {
     return (
       <Link to={"/project/" + project.id} key={project.id}>
-        <ProjectSummary title={project.title} content={project.content} />
+        <ProjectSummary project={project}  />
       </Link>
     )
   })
