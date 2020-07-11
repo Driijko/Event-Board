@@ -13,7 +13,7 @@ export default function CreateProject(props) {
   // GENERAL ///////////////////////////////////////
   // State: firstName, lastName
   // Action: addProject
-  const {addProject, firstName, lastName, userID} = useContext(Context);
+  const {addProject, firstName, lastName, userID, signedIn} = useContext(Context);
 
   // LOCAL ////////////////////////////////////////
   const [title, setTitle] = useState("");
@@ -48,6 +48,11 @@ export default function CreateProject(props) {
   if (redirect) {
     return (
       <Redirect to="/" />
+    )
+  }
+  else if (signedIn === false) {
+    return (
+      <Redirect to="/signin" />
     )
   }
   else {
